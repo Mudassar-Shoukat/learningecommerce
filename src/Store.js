@@ -1,15 +1,27 @@
-import { createStore } from 'vuex'
-export default createStore({
-state:{
-  name:"example"
-}
-})
-// import Vue from 'vue'
-//  import Vuex from 'vuex'
-// Vue.use(Vuex)
-// const store = new Vuex.Store({
-// state:{
-//   name:"second"
-// }
-// })
+import { defineStore } from "pinia";
 
+export const useCounterStore = defineStore("counter", {
+  state: () => ({
+    cart: [],
+  }),
+  actions: {
+    AddtoCart(product) {
+      const { id } = product;
+      let productItm = this.cart.find((item) => {
+        return item.id == id;
+        //  console.log(product);
+      });
+
+      if (!productItm) {
+        this.cart.push(product);
+      }
+    },
+    removeFromCart(product) {
+      this.cart = this.cart.filter((item) => item.id !== product.id);
+      // console.log("product remove");
+      // console.log("remove single product", product);
+      console.log("remove single product in cart", this.cart);
+    },
+   
+  },
+});

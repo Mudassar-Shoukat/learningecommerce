@@ -1,4 +1,11 @@
 <template>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
   <div v-if="product.id">
     <div class="container">
       <!-- Single Product image -->
@@ -60,9 +67,8 @@
         </div>
 
         <div class="h-[45px] w-full p-1 flex bg-[white]">
-         
-
-          <button 
+          <button
+            @click="AddtoCart(product)"
             type="button"
             class="text-white bg-[#12123b] hover:bg-[#26266b] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2"
           >
@@ -78,7 +84,6 @@
               />
             </svg>
             Add to Cart
-
           </button>
         </div>
         <div class="h-[35px] w-full p-1 flex bg-[white]">
@@ -107,6 +112,8 @@
 
 <script>
 import axios from "axios";
+import { useCounterStore } from "../Store";
+import { mapActions, mapState } from "pinia";
 
 export default {
   data() {
@@ -114,13 +121,18 @@ export default {
       product: "",
     };
   },
+
+  methods: {
+    ...mapActions(useCounterStore, ["AddtoCart"]),
+  },
+
   mounted() {
     const productId = this.$route.params.id;
 
     if (productId) {
       axios
         .get(`https://dummyjson.com/products/${productId}`)
-        .then((response) =>{
+        .then((response) => {
           if (response.data) {
             this.product = response.data;
           } else {
@@ -129,8 +141,6 @@ export default {
         });
     }
   },
-
-
 };
 </script>
 
