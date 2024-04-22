@@ -6,10 +6,11 @@ export const useCounterStore = defineStore("counter", {
   }),
   actions: {
     AddtoCart(product) {
+     
       const { id } = product;
       let productItm = this.cart.find((item) => {
         return item.id == id;
-        //  console.log(product);
+        
       });
 
       if (!productItm) {
@@ -22,6 +23,14 @@ export const useCounterStore = defineStore("counter", {
       // console.log("remove single product", product);
       console.log("remove single product in cart", this.cart);
     },
+
+    incrementCart(productId){
+      let prouct = this.cart.find((item) => {
+        return item.id == productId;  
+      });
+      console.log("Product in store",prouct);
+    }
+  
    
   },
 });

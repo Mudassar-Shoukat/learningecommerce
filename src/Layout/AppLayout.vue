@@ -1,8 +1,8 @@
 <template>
-  <div >
+  <div>
     <header class="2xl:container 2xl:mx-auto">
       <slot name="header">
-        <div class="shadow py-3 px-7">
+        <div class="shadow py-2 px-7">
           <nav class="flex justify-between">
             <div class="flex items-center space-x-3 lg:pr-16 pr-6">
               <h2 class="font-normal text-2xl leading-6 text-gray-800">
@@ -88,10 +88,32 @@
                     </button>
                   </div>
 
-                  <!-- click add to cart button and other  -->
+                  <!-- click add to cart component  -->
                   <div v-for="item in cart" :key="item.id">
                     <CartItemVue :item="item" />
                   </div>
+                  <!-- Sub total -->
+                  <div
+                    class="m-2 rounded-lg border bg-white p-5 shadow-md w-[440px]"
+                  >
+                    <hr class="my-4" />
+
+                    <div class="flex justify-between">
+                      <p class="text-lg font-bold">Total Price</p>
+                      <div>
+                        <p class="mb-1 text-lg font-bold">
+                          ${{ totalPrice }}
+                        </p>
+                      </div>
+                    </div>
+
+                    <button
+                      class="mt-6 w-full rounded-md bg-[#F9EFDB] py-1.5 font-medium hover:bg-[#efe5d3]"
+                    >
+                      Check out
+                    </button>
+                  </div>
+
                 </div>
 
                 <div
@@ -129,12 +151,24 @@ export default {
   data() {
     return {
       drawerVisible: false,
+      quantity: 1,
     };
   },
 
-  computed: {
-    ...mapState(useCounterStore, ["cart"]),
+  // computed: {
+  //   ...mapState(useCounterStore, ["cart"]),
+  // },
+computed: {
+  ...mapState(useCounterStore, ["cart"]),
+  totalPrice() {
+   
+    return this.cart.reduce((acc, item) => acc + ( item.price ), 0);
+  
   },
+ 
+ 
+},
+
 };
 </script>
 <style scoped>
@@ -151,7 +185,6 @@ export default {
   z-index: 200;
   transition: all 0.2s;
   /* border: 1px solid green; */
-  
 }
 
 .drawer-mask {
