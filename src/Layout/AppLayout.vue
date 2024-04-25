@@ -134,7 +134,7 @@
 
 <script>
 import { mapState } from "pinia";
-import { useCounterStore } from "../Store";
+import { UseCartStore } from "../Store";
 import CartItemVue from "../Components/CartItem.vue";
 export default {
   components: {
@@ -148,7 +148,7 @@ export default {
   },
 
   computed: {
-    ...mapState(useCounterStore, ["cart"]),
+    ...mapState(UseCartStore, ["cart"]),
     TotalPrice() {
       return this.cart.reduce((acc, item) => acc + item.price * item.qty, 0);
     },

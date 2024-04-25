@@ -30,7 +30,7 @@
         <div class="flex items-center justify-center">
           <button
             class="block w-[25px] h-[23px] bg-[#d7d2d2] no-underline text-center leading-[23px]"
-            @click="decrementCart(item.id)"
+            @click="Decrement_Cart(item.id)"
           >
             -
           </button>
@@ -41,7 +41,7 @@
           />
           <button
             class="block w-[25px] h-[23px] bg-[#d7d2d2] no-underline text-center leading-[23px]"
-            @click="incrementCart(item.id)"
+            @click="Increment_Cart(item.id)"
           >
             +
           </button>
@@ -51,7 +51,7 @@
       <div class="flex text-right justify-end">
         <button
           class="hover:underline hover:text-[red]"
-          @click="removeFromCart()"
+          @click="RemoveFromCart()"
         >
           Remove
         </button>
@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import { useCounterStore } from "../Store";
+import { UseCartStore } from "../Store";
 import { mapActions, mapState } from "pinia";
 export default {
   props: {
@@ -74,11 +74,11 @@ export default {
   },
 
   methods: {
-    ...mapActions(useCounterStore, ["incrementCart", "decrementCart"]),
+    ...mapActions(UseCartStore, ["Increment_Cart", "Decrement_Cart"]),
 
-    removeFromCart() {
-      const store = useCounterStore();
-      store.removeFromCart(this.item);
+    RemoveFromCart() {
+      const store = UseCartStore();
+      store.RemoveFromCart(this.item);
       console.log("store clear", store);
     },
   },

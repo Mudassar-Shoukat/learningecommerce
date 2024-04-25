@@ -117,7 +117,7 @@
 
 <script>
 import axios from "axios";
-import { useCounterStore } from "../Store";
+import { UseCartStore } from "../Store";
 import { mapActions, mapState } from "pinia";
 
 export default {
@@ -128,7 +128,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(useCounterStore, ["AddtoCart"]),
+    ...mapActions(UseCartStore, ["AddtoCart"]),
   },
 
   mounted() {
