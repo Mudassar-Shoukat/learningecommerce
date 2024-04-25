@@ -1,8 +1,8 @@
 <template>
   <div>
-    <header class="2xl:container 2xl:mx-auto">
+    <header class="bg-[white] fixed top-0 left-0 w-full  ">
       <slot name="header">
-        <div class="shadow py-2 px-7">
+        <div class="shadow py-1 px-7">
           <nav class="flex justify-between">
             <div class="flex items-center space-x-3 lg:pr-16 pr-6">
               <h2 class="font-normal text-2xl leading-6 text-gray-800">
@@ -12,19 +12,14 @@
 
             <!-- medium -->
             <ul class="hidden md:flex flex-auto space-x-2">
-              <button
+             <button
                 onclick="location.href='//localhost:5173/'"
                 type="button"
-                class="px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                class="px-7 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
               >
                 Home
-              </button>
-              <button
-                type="button"
-                class="py-2 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-              >
-                About Us
-              </button>
+              </button> 
+        
             </ul>
             <!-- right side icons and other  -->
             <div class="flex space-x-5 justify-center items-center pl-2">
@@ -99,11 +94,9 @@
                     <hr class="my-4" />
 
                     <div class="flex justify-between">
-                      <p class="text-lg font-bold">Total Price</p>
+                      <p class="text-lg font-bold">Total Product Price</p>
                       <div>
-                        <p class="mb-1 text-lg font-bold">
-                          ${{ totalPrice }}
-                        </p>
+                        <p class="mb-1 text-lg font-bold">${{ TotalPrice }}</p>
                       </div>
                     </div>
 
@@ -113,7 +106,6 @@
                       Check out
                     </button>
                   </div>
-
                 </div>
 
                 <div
@@ -131,7 +123,7 @@
       </slot>
     </header>
 
-    <main class="px-[6px] py-[16px]">
+    <main class="px-[6px] py-[16px]  mt-[80px]">
       <slot> </slot>
     </main>
     <footer class="bg-[#eee] px-[6px] py-[10px]">
@@ -155,20 +147,12 @@ export default {
     };
   },
 
-  // computed: {
-  //   ...mapState(useCounterStore, ["cart"]),
-  // },
-computed: {
-  ...mapState(useCounterStore, ["cart"]),
-  totalPrice() {
-   
-    return this.cart.reduce((acc, item) => acc + ( item.price ), 0);
-  
+  computed: {
+    ...mapState(useCounterStore, ["cart"]),
+    TotalPrice() {
+      return this.cart.reduce((acc, item) => acc + item.price * item.qty, 0);
+    },
   },
- 
- 
-},
-
 };
 </script>
 <style scoped>

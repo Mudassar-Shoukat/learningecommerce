@@ -1,5 +1,7 @@
 <template>
-  <div class="bg-[#f7dfb052] m-[4px] flex w-[450px] p-[10px]  rounded ">
+  <div
+    class="border-[1px] border-[rgb(210,208,190)] outline-[#f0eaea] bg-[#f6f4f4] [box-shadow:0_3px_3px_rgb(237,_240,_239)] m-[4px] flex w-[450px] p-[10px] rounded"
+  >
     <!--  -->
     <div
       class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200"
@@ -18,27 +20,28 @@
         </div>
 
         <span class="text-[#0C0C0C] text-sm">
-          RS: ${{ calculateTotalPrice }}
+          <!-- RS: ${{ item.price * item.qty }} -->
+          RS: ${{ item.totalPrice }}
+
         </span>
       </div>
 
       <div class="h-[30px] flex">
         <div class="flex items-center justify-center">
           <button
-            class="block w-[25px] h-[23px] bg-[#f7dfb0df] no-underline text-center leading-[23px]"
-            @click="decreaseQuantity"
+            class="block w-[25px] h-[23px] bg-[#d7d2d2] no-underline text-center leading-[23px]"
+            @click="decrementCart(item.id)"
           >
             -
           </button>
 
           <input
-            class="w-[45px] h-[23px] outline-[none] text-center bg-[#f7dfb052]"
-            v-model="quantity"
-            @input="updateQuantity"
+            class="w-[45px] h-[23px] outline-[none] text-center bg-[#f6f4f4]"
+            v-model="item.qty"
           />
           <button
-            class="block w-[25px] h-[23px] bg-[#f7dfb0df] no-underline text-center leading-[23px]"
-            @click="increaseQuantity"
+            class="block w-[25px] h-[23px] bg-[#d7d2d2] no-underline text-center leading-[23px]"
+            @click="incrementCart(item.id)"
           >
             +
           </button>
@@ -69,35 +72,10 @@ export default {
       quantity: 1,
     };
   },
-  computed: {
-    calculateTotalPrice() {
-      return this.quantity * this.item.price;
-    },
-  },
+
   methods: {
+    ...mapActions(useCounterStore, ["incrementCart", "decrementCart"]),
 
-    ...mapActions(useCounterStore, ["incrementCart",]),
-
-    decreaseQuantity() {
-      if (this.quantity  > 1) {
-        this.quantity--;
-      }
-      console.log("Decrement");
-    },
-    increaseQuantity() {
-      if (this.quantity < this.item.stock) {
-        let increment = this.quantity++;
-
-        console.log("Increment", increment);
-      } else {
-        alert("Item is out of stock");
-      }
-    },
-    updateQuantity() {
-      if (this.quantity  < 1) {
-        this.quantity = 1;
-      }
-    },
     removeFromCart() {
       const store = useCounterStore();
       store.removeFromCart(this.item);
