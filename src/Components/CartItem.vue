@@ -1,6 +1,6 @@
 <template>
   <div
-    class="border-[1px] border-[rgb(210,208,190)] outline-[#f0eaea] bg-[#f6f4f4] [box-shadow:0_3px_3px_rgb(237,_240,_239)] m-[4px] flex w-[450px] p-[10px] rounded"
+    class="border-[1px] border-[rgb(210,208,190)] outline-[#f0eaea] bg-[#faf8f8] [box-shadow:0_3px_3px_rgb(237,_240,_239)] m-[4px] flex w-[450px] p-[10px] rounded"
   >
     <!--  -->
     <div

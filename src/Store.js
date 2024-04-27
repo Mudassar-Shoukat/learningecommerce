@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import axios from "axios";
 
 export const UseCartStore = defineStore("counter", {
   state: () => ({
@@ -50,6 +51,29 @@ export const UseCartStore = defineStore("counter", {
 
         console.log("product decrement quantity in store", product.qty--);
         console.log("product decrement quantity in store object", product);
+      }
+    },
+  },
+});
+
+export const UserLoginAuth = defineStore("auth", {
+  state: () => ({
+    user: [],
+  }),
+  actions: {
+    async getUserData() {
+      try {
+        const response = await axios.get("https://dummyjson.com/auth/me", {
+          headers: {
+            Authorization: `${localStorage.getItem("authToken")}`,
+          },
+        });
+        console.log("store response", response);
+        this.user = response.data;
+
+        console.log("Fetched user data in store:", this.user);
+      } catch (error) {
+        console.error("Error fetching user data:");
       }
     },
   },

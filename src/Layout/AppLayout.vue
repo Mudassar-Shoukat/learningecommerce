@@ -1,28 +1,54 @@
 <template>
   <div>
-    <header class="bg-[white] fixed top-0 left-0 w-full  ">
+    <header
+      class="bg-[white] fixed top-0 w-full [box-shadow:0_3px_3px_rgb(237,_240,_239)]"
+    >
       <slot name="header">
-        <div class="shadow py-1 px-7">
+        <div class="border py-1 px-7">
           <nav class="flex justify-between">
             <div class="flex items-center space-x-3 lg:pr-16 pr-6">
               <h2 class="font-normal text-2xl leading-6 text-gray-800">
-                Practice Website
+                Ecommerce
               </h2>
             </div>
 
             <!-- medium -->
-            <ul class="hidden md:flex flex-auto space-x-2">
-             <button
+            <ul class="flex items-center m-auto flex-auto space-x-2">
+              <button
                 onclick="location.href='//localhost:5173/'"
                 type="button"
-                class="px-7 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                class="w-[100px] h-[40px] mt-2 mb-2 text-sm font-medium bg-[#fdfbfb] rounded-lg border border-[#e6e5e5] hover:bg-gray-100 hover:text-black"
               >
-                Home
-              </button> 
-        
+                <router-link :to="{ path: '/' }">Home</router-link>
+              </button>
             </ul>
             <!-- right side icons and other  -->
-            <div class="flex space-x-5 justify-center items-center pl-2">
+
+            <div class="flex space-x-2 justify-center items-center pl-2">
+              <!-- Login icon -->
+              <button
+                type="button"
+                class="hover:bg-[#f1efef] p-[7px] rounded-full"
+              >
+                <router-link :to="{ path: '/Login' }">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-6 h-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                    />
+                  </svg>
+                </router-link>
+              </button>
+
+              <!-- right side popup open icon -->
               <div>
                 <div style="text-align: right">
                   <button
@@ -89,7 +115,7 @@
                   </div>
                   <!-- Sub total -->
                   <div
-                    class="m-2 rounded-lg border bg-white p-5 shadow-md w-[440px]"
+                    class="m-2 rounded-lg border bg-[white] p-5 shadow w-[440px]"
                   >
                     <hr class="my-4" />
 
@@ -101,7 +127,7 @@
                     </div>
 
                     <button
-                      class="mt-6 w-full rounded-md bg-[#F9EFDB] py-1.5 font-medium hover:bg-[#efe5d3]"
+                      class="mt-6 w-full border rounded-md bg-[#f7f5f5] py-1.5 font-medium hover:bg-[#ebeaea]"
                     >
                       Check out
                     </button>
@@ -123,7 +149,7 @@
       </slot>
     </header>
 
-    <main class="px-[6px] py-[16px]  mt-[80px]">
+    <main class="px-[6px] py-[16px] mt-[80px]">
       <slot> </slot>
     </main>
     <footer class="bg-[#eee] px-[6px] py-[10px]">
