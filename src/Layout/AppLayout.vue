@@ -1,13 +1,15 @@
 <template>
   <div>
     <header
-      class="bg-[white] fixed top-0 w-full [box-shadow:0_3px_3px_rgb(237,_240,_239)]"
+      class="bg-[white] fixed top-0 w-full [box-shadow:0_3px_3px_rgb(237,_240,_239)] 
+      "
     >
       <slot name="header">
-        <div class="border py-1 px-7">
+        <div class="border  px-7">
           <nav class="flex justify-between">
-            <div class="flex items-center space-x-3 lg:pr-16 pr-6">
-              <h2 class="font-normal text-2xl leading-6 text-gray-800">
+            <div class="flex items-center  space-x-3 lg:pr-16 pr-6">
+             
+              <h2 class="font-normal text-2xl  text-[#696820]">
                 Ecommerce
               </h2>
             </div>
@@ -15,39 +17,45 @@
             <!-- medium -->
             <ul class="flex items-center m-auto flex-auto space-x-2">
               <button
-                onclick="location.href='//localhost:5173/'"
                 type="button"
-                class="w-[100px] h-[40px] mt-2 mb-2 text-sm font-medium bg-[#fdfbfb] rounded-lg border border-[#e6e5e5] hover:bg-gray-100 hover:text-black"
+                class="w-[100px] h-[35px] mt-2 mb-2 text-sm font-medium bg-[#e8e5e524] rounded-[5px] border border-[#e6e5e5] hover:bg-gray-100 hover:text-black hover:[transition:0.3s_ease-in-out]"
+                @click="$router.push('/')"
               >
-                <router-link :to="{ path: '/' }">Home</router-link>
+                Home
               </button>
+              <button
+                type="button"
+                class="w-[100px] h-[35px] mt-2 mb-2 text-sm font-medium bg-[#e8e5e524] rounded-[5px] border border-[#e6e5e5] hover:bg-gray-100 hover:text-black hover:[transition:0.3s_ease-in-out]"
+              
+              >
+              About
+              </button>
+              
             </ul>
             <!-- right side icons and other  -->
 
             <div class="flex space-x-2 justify-center items-center pl-2">
               <!-- Login icon -->
               <button
+                v-if="!userToken"
                 type="button"
-                class="hover:bg-[#f1efef] p-[7px] rounded-full"
+                class="hover:underline hover:text-[#3941a9]"
               >
-                <router-link :to="{ path: '/Login' }">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="w-6 h-6"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                    />
-                  </svg>
-                </router-link>
+                <router-link :to="{ path: '/Login' }"> Login </router-link>
               </button>
 
+              <div
+                v-if="userToken"
+                class="flex space-x-2 justify-center items-center pr-2"
+              >
+                <button
+                  @click="logout"
+                  class="hover:underline hover:text-[#3941a9]"
+                >
+                  Logout
+                </button>
+                <img class="h-6 w-6 rounded-full mr-2 border" :src="user.image" />
+              </div>
               <!-- right side popup open icon -->
               <div>
                 <div style="text-align: right">
@@ -159,8 +167,8 @@
 </template>
 
 <script>
-import { mapState } from "pinia";
-import { UseCartStore } from "../Store";
+import { mapState, mapActions } from "pinia";
+import { UseCartStore, UseAuthStore } from "../Store";
 import CartItemVue from "../Components/CartItem.vue";
 export default {
   components: {
@@ -175,9 +183,25 @@ export default {
 
   computed: {
     ...mapState(UseCartStore, ["cart"]),
+    ...mapState(UseAuthStore, ["user", "userToken"]),
     TotalPrice() {
       return this.cart.reduce((acc, item) => acc + item.price * item.qty, 0);
     },
+  },
+
+  mounted() {
+    let token = localStorage.getItem("userToken");
+    let user = localStorage.getItem("user");
+
+    if (token && user) {
+      let parsedUser = JSON.parse(user);
+
+      this.setAuthUser(parsedUser);
+    }
+  },
+  methods: {
+    // ...mapActions(UseAuthStore, ["setAuthUser"]),
+    ...mapActions(UseAuthStore, ["setAuthUser", "logout"]),
   },
 };
 </script>

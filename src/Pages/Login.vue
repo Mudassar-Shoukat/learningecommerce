@@ -43,10 +43,9 @@
           <div class="my-6">
             <button
               type="submit"
-              class="w-full rounded-md bg-[#19134b] py-2 text-white hover:bg-slate-800"
-              @click="getUserData"
+              class="w-full rounded-md bg-[#19134b] py-2 text-white hover:bg-slate-800 hover:underline"
             >
-              Sign in
+              Sign In
             </button>
           </div>
           <p class="text-center text-sm text-gray-500">
@@ -63,35 +62,33 @@
 
 <script>
 import axios from "axios";
-import { UserLoginAuth } from "../Store";
+import { UseAuthStore } from "../Store";
 import { mapActions } from "pinia";
 
 export default {
   data() {
     return {
       FormValue: {
-        username: "",
-        password: "",
+        username: "kminchelle",
+        password: "0lelplR",
       },
     };
   },
 
   methods: {
-    ...mapActions(UserLoginAuth, ["getUserData"]),
-
+    ...mapActions(UseAuthStore, ["setAuthUser"]),
+    signin() {
+      console.log("click sign in button");
+    },
     async login() {
       const loginResponse = await axios.post(
         "https://dummyjson.com/auth/login",
         this.FormValue
       );
-      console.log("loginresponse", loginResponse);
+
       if (loginResponse.data.token) {
-        // let local=localStorage.setItem("authToken", loginResponse.data.token);
-
-        localStorage.setItem("authToken", loginResponse.data.token);
-
-        console.log("toke is true", localStorage);
-        // console.log("token is true", loginResponse.data.token);
+        this.setAuthUser(loginResponse.data);
+        this.$router.push({ path: "/" });
       } else {
         console.log("error");
       }

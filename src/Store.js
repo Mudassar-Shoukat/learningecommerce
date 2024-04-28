@@ -56,25 +56,29 @@ export const UseCartStore = defineStore("counter", {
   },
 });
 
-export const UserLoginAuth = defineStore("auth", {
+export const UseAuthStore = defineStore("auth", {
   state: () => ({
     user: [],
+    userToken: null,
   }),
   actions: {
-    async getUserData() {
-      try {
-        const response = await axios.get("https://dummyjson.com/auth/me", {
-          headers: {
-            Authorization: `${localStorage.getItem("authToken")}`,
-          },
-        });
-        console.log("store response", response);
-        this.user = response.data;
-
-        console.log("Fetched user data in store:", this.user);
-      } catch (error) {
-        console.error("Error fetching user data:");
+    async setAuthUser(data) {
+      const { token } = data;
+      this.userToken = token;
+      this.user = data;
+      let user_token = localStorage.getItem("userToken");
+      let user_ = localStorage.getItem("user");
+      if (!user_token && !user_) {
+        console.log("true");
+        localStorage.setItem("userToken", this.userToken);
+        localStorage.setItem("user", JSON.stringify(this.user));
       }
+    },
+    logout() {
+      localStorage.removeItem("userToken");
+      localStorage.removeItem("user");
+      this.user = [];
+      this.userToken = null;
     },
   },
 });
