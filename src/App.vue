@@ -1,13 +1,12 @@
 <template>
   <div>
-    <AppLayout >
+    <AppLayout>
       <router-view></router-view>
     </AppLayout>
   </div>
 </template>
 
 <script>
-
 import AppLayout from "/src/Layout/AppLayout.vue";
 
 export default {

@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import axios from "axios";
-
+// Product store
 export const UseCartStore = defineStore("counter", {
   state: () => ({
     cart: [],
@@ -56,6 +56,7 @@ export const UseCartStore = defineStore("counter", {
   },
 });
 
+// Form or user auth store
 export const UseAuthStore = defineStore("auth", {
   state: () => ({
     user: [],

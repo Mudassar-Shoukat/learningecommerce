@@ -22,7 +22,6 @@
         <span class="text-[#0C0C0C] text-sm">
           <!-- RS: ${{ item.price * item.qty }} -->
           RS: ${{ item.totalPrice }}
-
         </span>
       </div>
 

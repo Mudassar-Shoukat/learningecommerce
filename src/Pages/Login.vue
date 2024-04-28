@@ -24,7 +24,7 @@
               >Username</label
             >
           </div>
-          
+
           <div class="relative mt-6">
             <input
               type="password"
