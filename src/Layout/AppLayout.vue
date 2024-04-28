@@ -1,17 +1,22 @@
 <template>
   <div>
+   
     <header
-      class="bg-[white] fixed top-0 w-full [box-shadow:0_3px_3px_rgb(237,_240,_239)] 
-      "
+      class="bg-[white] fixed top-0 w-full [box-shadow:0_3px_3px_rgb(237,_240,_239)]"
     >
       <slot name="header">
-        <div class="border  px-7">
+        <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material
++Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+        <div class="border px-7">
           <nav class="flex justify-between">
-            <div class="flex items-center  space-x-3 lg:pr-16 pr-6">
-             
-              <h2 class="font-normal text-2xl  text-[#696820]">
-                Ecommerce
-              </h2>
+            <div class="flex items-center space-x-3 lg:pr-16 pr-6">
+              <span class="material-symbols-outlined">
+                shopping_cart_checkout
+              </span>
+              <h2 class=" text-2xl text-[#0e2829] ">shopping store</h2>
             </div>
 
             <!-- medium -->
@@ -23,14 +28,18 @@
               >
                 Home
               </button>
+              <!-- <router-link :to="{ name: 'admin.product.index' }"
+                type="button"
+                class="w-[100px] h-[35px] mt-2 mb-2 text-sm font-medium bg-[#e8e5e524] rounded-[5px] border border-[#e6e5e5] hover:bg-gray-100 hover:text-black hover:[transition:0.3s_ease-in-out]"
+              >
+                admin
+              </router-link> -->
               <button
                 type="button"
                 class="w-[100px] h-[35px] mt-2 mb-2 text-sm font-medium bg-[#e8e5e524] rounded-[5px] border border-[#e6e5e5] hover:bg-gray-100 hover:text-black hover:[transition:0.3s_ease-in-out]"
-              
               >
-              About
+                <router-link :to="{ path: '/admin/products' }">Admin </router-link>
               </button>
-              
             </ul>
             <!-- right side icons and other  -->
 
@@ -54,7 +63,10 @@
                 >
                   Logout
                 </button>
-                <img class="h-6 w-6 rounded-full mr-2 border" :src="user.image" />
+                <img
+                  class="h-6 w-6 rounded-full mr-2 border"
+                  :src="user.image"
+                />
               </div>
               <!-- right side popup open icon -->
               <div>

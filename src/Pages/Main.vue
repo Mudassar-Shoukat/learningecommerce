@@ -1,12 +1,14 @@
 <template>
   <div class="flex justify-center">
-    
+
+ 
     <input
-      class="px-6 py-2 text-[1rem] border-[1px] border-[rgb(210,208,190)] outline-[#f0eaea] rounded-[44px] [box-shadow:0_3px_3px_rgb(237,_240,_239)] w-[450px] mb-7"
+      class="px-6 py-2 text-[1rem] border-[1px] border-[rgb(210,208,190)] outline-[#f0eaea] rounded-[50px] [box-shadow:0_3px_3px_rgb(237,_240,_239)] w-[450px] mb-7"
+      
       type="text"
       v-model="searchTerm"
       @keyup="searchProduct"
-      placeholder="Search ..."
+      placeholder="Search Product..."
      
 
     />
