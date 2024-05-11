@@ -14,6 +14,7 @@
           </h1>
         </div>
       </section>
+
       <!-- Short Product images or releated images -->
       <section
         class="w-[180px] h-[440px] m-[10px] flex flex-wrap  text-center rounded-[5px] border-[1px] overflow-hidden bg-[#f2f0f0] border-zinc-300 ]">

@@ -1,13 +1,35 @@
 <template>
-  <div class="flex justify-center">
-    <input
-      class="px-6 py-2 text-[1rem] border-[1px] border-[rgb(210,208,190)] outline-[#f0eaea] rounded-[50px] [box-shadow:0_3px_3px_rgb(237,_240,_239)] w-[450px] mb-7"
+
+  <div class="relative w-[480px] mx-auto mt-1 mb-5">
+    <input  
+      
+    
+      class="w-full py-2 px-4 border border-gray-300 rounded-[20px] outline-[#f0eaea]"
       type="text"
       v-model="searchTerm"
-      @keyup="searchProduct"
-      placeholder="Search Product..."
+      @keyup.enter="searchProduct"
+      placeholder="Search "
     />
+
+    <button
+      class="absolute inset-y-0 right-0 flex items-center px-5 text-gray-700 bg-gray-100 border border-gray-300 rounded-r-[20px] hover:bg-gray-200 outline-[#f0eaea]"
+      @click="searchProduct"
+    >
+      <svg
+        class="h-5 w-5"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M14.795 13.408l5.204 5.204a1 1 0 01-1.414 1.414l-5.204-5.204a7.5 7.5 0 111.414-1.414zM8.5 14A5.5 5.5 0 103 8.5 5.506 5.506 0 008.5 14z"
+        />
+      </svg>
+    </button>
   </div>
+
   <div class="flex flex-wrap justify-center items-center w-full">
     <div
       v-for="product in productList"
@@ -65,6 +87,9 @@ export default {
   },
   methods: {
     searchProduct() {
+      // if (!this.searchTerm) {
+      //   this.$router.push({ path: "/" });
+      // }
       if (this.timer) {
         clearTimeout(this.timer);
         this.timer = null;
