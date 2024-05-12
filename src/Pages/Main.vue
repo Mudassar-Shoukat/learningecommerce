@@ -1,18 +1,39 @@
 <template>
-
-  <div class="relative w-[480px] mx-auto mt-1 mb-5">
-    <input  
-      
-    
-      class="w-full py-2 px-4 border border-gray-300 rounded-[20px] outline-[#f0eaea]"
+  <!-- search bar  -->
+  <div class="w-[500px] mx-auto mb-3 flex">
+    <input
+      id="input"
+      class="w-full py-2 px-6 border rounded-l-[20px] outline-[#eeecec]"
       type="text"
       v-model="searchTerm"
       @keyup.enter="searchProduct"
-      placeholder="Search "
+      placeholder="Search... "
     />
 
     <button
-      class="absolute inset-y-0 right-0 flex items-center px-5 text-gray-700 bg-gray-100 border border-gray-300 rounded-r-[20px] hover:bg-gray-200 outline-[#f0eaea]"
+      id="button"
+      v-if="searchTerm"
+      class="w-10 inset-y-0 p-2 flex items-center text-gray-700 border-y-[1px]"
+      @click="clear"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-6 h-6 hover:bg-[#dcd8d8] rounded-full"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M6 18 18 6M6 6l12 12"
+        />
+      </svg>
+    </button>
+
+    <button
+      class="inset-y-0 right-0 flex items-center px-5 text-gray-700 bg-gray-100 border border-gray-300 rounded-r-[20px] hover:bg-gray-200 outline-[#f0eaea]"
       @click="searchProduct"
     >
       <svg
@@ -30,6 +51,7 @@
     </button>
   </div>
 
+  <!-- product list  -->
   <div class="flex flex-wrap justify-center items-center w-full">
     <div
       v-for="product in productList"
@@ -87,9 +109,6 @@ export default {
   },
   methods: {
     searchProduct() {
-      // if (!this.searchTerm) {
-      //   this.$router.push({ path: "/" });
-      // }
       if (this.timer) {
         clearTimeout(this.timer);
         this.timer = null;
@@ -100,6 +119,24 @@ export default {
         });
       }, 1000);
     },
+
+    clear() {
+      this.searchTerm = "";
+      if (this.searchTerm === "") {
+        this.$router.push({ path: "/" });
+        console.log("empty");
+      }
+      console.log("clear");
+    },
   },
 };
 </script>
+<style scoped>
+#input {
+  @apply outline-none border-r-0 focus:outline-none focus:border-r-0;
+}
+
+#button {
+  @apply outline-none border-l-0 focus:outline-none focus:border-l-0;
+}
+</style>

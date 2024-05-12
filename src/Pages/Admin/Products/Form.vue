@@ -4,7 +4,7 @@
       <div class="text-center">
         <h1 class="text-2xl font-semibold text-[#141937] underline">
           Product Detail
-        </h1>
+        </h1> 
       </div>
       <div class="mt-5">
         <form>
