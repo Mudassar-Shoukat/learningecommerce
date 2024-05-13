@@ -2,14 +2,14 @@
   <div>
     <header class="bg-[white] fixed top-0 w-full [box-shadow:0_3px_3px_rgb(237,_240,_239)]">
       <slot name="header">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material
-+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material
++Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" /> -->
         <div class="border px-7">
           <nav class="flex justify-between">
             <div class="flex items-center space-x-3 lg:pr-16 pr-6">
-              <span class="material-symbols-outlined">
+              <!-- <span class="material-symbols-outlined">
                 shopping_cart_checkout
-              </span>
+              </span> -->
               <h2 class="text-2xl text-[#0e2829]">shopping store</h2>
             </div>
 
