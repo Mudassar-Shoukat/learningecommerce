@@ -111,7 +111,7 @@
     <main class="px-[6px] py-[16px] mt-[80px] bg-[white]">
       <slot> </slot>
     </main>
-    <footer class="bg-[#eee] px-[6px] py-[10px]">
+    <footer class="bg-[#e60707] px-[6px] py-[10px] text-white">
       <slot name="footer">Footer </slot>
     </footer>
   </div>

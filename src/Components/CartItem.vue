@@ -73,7 +73,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(UseCartStore, ["Increment_Cart", "Decrement_Cart"]),
+    ...mapActions( UseCartStore, ["Increment_Cart", "Decrement_Cart"]),
 
     RemoveFromCart() {
       const store = UseCartStore();
