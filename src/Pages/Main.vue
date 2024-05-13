@@ -123,7 +123,7 @@ export default {
     clear() {
       this.searchTerm = "";
       if (this.searchTerm === "") {
-        this.$router.push({ path: "/" });
+     this.$router.push({ path: "/" });
         console.log("empty");
       }
       console.log("clear");
